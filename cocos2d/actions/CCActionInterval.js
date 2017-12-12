@@ -2848,7 +2848,7 @@ cc.FadeOut.create = cc.fadeOut;
  * @class
  * @extends cc.ActionInterval
  * @param {Number} duration
- * @param {Number} red 0-255
+ * @param {Number|cc.Color} red 0-255
  * @param {Number} green  0-255
  * @param {Number} blue 0-255
  * @example
@@ -2861,7 +2861,7 @@ cc.TintTo = cc.ActionInterval.extend(/** @lends cc.TintTo# */{
     /**
      * Constructor function, override it to extend the construction behavior, remember to call "this._super()" in the extended "ctor" function.
      * @param {Number} duration
-     * @param {Number} red 0-255
+     * @param {Number|cc.Color} red 0-255
      * @param {Number} green  0-255
      * @param {Number} blue 0-255
      */
@@ -2870,13 +2870,13 @@ cc.TintTo = cc.ActionInterval.extend(/** @lends cc.TintTo# */{
         this._to = cc.color(0, 0, 0);
         this._from = cc.color(0, 0, 0);
 
-        blue !== undefined && this.initWithDuration(duration, red, green, blue);
+        (blue !== undefined || red.r !== undefined) && this.initWithDuration(duration, red, green, blue);
     },
 
     /**
      * Initializes the action.
      * @param {Number} duration
-     * @param {Number} red 0-255
+     * @param {Number|cc.Color} red 0-255
      * @param {Number} green 0-255
      * @param {Number} blue 0-255
      * @return {Boolean}
@@ -2933,7 +2933,7 @@ cc.TintTo = cc.ActionInterval.extend(/** @lends cc.TintTo# */{
  * Tints a cc.Node that implements the cc.NodeRGB protocol from current tint to a custom one.
  * @function
  * @param {Number} duration
- * @param {Number} red 0-255
+ * @param {Number|cc.Color} red 0-255
  * @param {Number} green  0-255
  * @param {Number} blue 0-255
  * @return {cc.TintTo}
@@ -2950,7 +2950,7 @@ cc.tintTo = function (duration, red, green, blue) {
  * @static
  * @deprecated since v3.0 please use cc.tintTo instead.
  * @param {Number} duration
- * @param {Number} red 0-255
+ * @param {Number|cc.Color} red 0-255
  * @param {Number} green  0-255
  * @param {Number} blue 0-255
  * @return {cc.TintTo}
